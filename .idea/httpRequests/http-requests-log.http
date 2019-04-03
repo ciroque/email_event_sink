@@ -1,0 +1,82 @@
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T082235.200.json
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T082222.200.json
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T082113.400.html
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T081919.400.html
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T081832.400.html
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T081744.400.html
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T081700.400.html
+
+###
+
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+
+{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}
+
+<> 2019-04-02T081613.500.html
+
+###
+

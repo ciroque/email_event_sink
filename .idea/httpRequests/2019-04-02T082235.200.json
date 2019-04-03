@@ -1,0 +1,8 @@
+{
+  "email": "user@example.com",
+  "event": "delivered",
+  "event_timestamp": null,
+  "id": 4,
+  "inserted_at": "2019-04-03T03:22:35",
+  "updated_at": "2019-04-03T03:22:35"
+}

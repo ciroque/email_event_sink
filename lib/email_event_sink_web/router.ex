@@ -7,5 +7,9 @@ defmodule EmailEventSinkWeb.Router do
 
   scope "/api", EmailEventSinkWeb do
     pipe_through :api
+
+    scope "/email" do
+      match :post, "/events", EventSinkController, :create
+    end
   end
 end
