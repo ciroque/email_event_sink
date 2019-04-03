@@ -78,4 +78,5 @@ config :email_event_sink, EmailEventSink.Repo,
        username: "postgres",
        password: "postgres",
        database: "email_event_sink_prod",
+       hostname: "database-host",
        pool_size: 15
