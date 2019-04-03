@@ -8,7 +8,7 @@ jobs:
         environment:
           POSTGRES_USER: ubuntu
 
-    working_directory: /opt/app/birbleby
+    working_directory: /opt/app/email_event_sink
 
     environment:
       MIX_ENV: test

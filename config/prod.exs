@@ -68,4 +68,14 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-import_config "prod.secret.exs"
+#import_config "prod.secret.exs"
+
+config :email_event_sink, EmailEventSinkWeb.Endpoint,
+       secret_key_base: "8jOeyXYSJ7ftftgX8ZqJjJBmhpD3OztpuXnNIFubrRuI1FzEgHd+PYeNVb/2/vnj"
+
+# Configure your database
+config :email_event_sink, EmailEventSink.Repo,
+       username: "postgres",
+       password: "postgres",
+       database: "email_event_sink_prod",
+       pool_size: 15
