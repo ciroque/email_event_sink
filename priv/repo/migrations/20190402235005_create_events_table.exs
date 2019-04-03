@@ -5,7 +5,7 @@ defmodule EmailEventSink.Repo.Migrations.CreateEventsTable do
     create table(:events) do
       add(:email, :string)
       add(:event, :string)
-      add(:event_timestamp, :timestamp)
+      add(:event_timestamp, :integer)
 
       timestamps()
     end
