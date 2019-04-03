@@ -1,0 +1,109 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: elixir:1.8-alpine
+      - image: postgres:9.4.1
+        environment:
+          POSTGRES_USER: ubuntu
+
+    working_directory: /opt/app/birbleby
+
+    environment:
+      MIX_ENV: test
+      BIRBLEBY_SECRET_KEY: $BIRBLEBY_SECRET_KEY
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install required build tools
+          command: apk add --no-cache build-base
+
+      - run:
+          name: Set up Hex locally
+          command: |
+            mix local.hex --force && mix local.rebar --force
+
+      - run:
+          name: Set mix.lock aside
+          command: cp mix.lock mix.lock.orig
+
+      - restore_cache:
+          keys:
+            - email_event_sink-{{ checksum "mix.lock.orig" }}
+            - email_event_sink-{{ .Branch }}
+            - email_event_sink-master
+
+      - run:
+          name: Download dependencies
+          command: mix deps.get
+
+      - save_cache:
+          key: email_event_sink-{{ .Branch }}
+          paths:
+            - _build
+            - deps
+
+      - save_cache:
+          key: email_event_sink-{{ checksum "mix.lock.orig" }}
+          paths:
+            - _build
+            - deps
+
+      - run:
+          name: Run Tests
+          command: mix test
+
+      ## Prod docker image building
+      - restore_cache:
+          keys:
+            - email_event_sink-prod-{{ checksum "mix.lock.orig" }}
+            - email_event_sink-prod-{{ .Branch }}
+            - email_event_sink-prod-master
+
+      - run:
+          name: Compile for prod
+          command: |
+            MIX_ENV=prod mix compile
+#            MIX_ENV=prod mix release && \
+#            mix phx.digest
+
+      - save_cache:
+          key: email_event_sink-prod-{{ .Branch }}
+          paths:
+            - _build/prod
+
+      - save_cache:
+          key: email_event_sink-prod-{{ checksum "mix.lock.orig" }}
+          paths:
+            - _build/prod
+
+      # all steps after this run in the remote environment
+      - type: setup-docker-engine
+        reusable: true
+        version: 17.06.0-ce
+
+      - run:
+          name: Install Docker client
+          command: |
+            apk add curl
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+
+      - run:
+          name: Build docker image and publish image tagged with commit
+          command: |
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker build -t ciroque/$CIRCLE_PROJECT_REPONAME:latest .
+            docker push ciroque/email_event_sink:latest
+workflows:
+  version: 2
+  build:
+    jobs:
+    - build:
+        context: org-global
