@@ -74,8 +74,10 @@ config :email_event_sink, EmailEventSinkWeb.Endpoint,
 
 # Configure your database
 config :email_event_sink, EmailEventSink.Repo,
-       username: "postgres",
-       password: "postgres",
-       database: "email_event_sink_prod",
-       hostname: "database-host",
-       pool_size: 15
+       username: "${DBUN}" || "must-be-set",
+       password: "${DBPW}" || "must-be-set",
+       database: "${DBNM}" || "email_event_sink",
+       hostname: "${DBHN}" || "database-host",
+       pool_size: 15,
+       queue_target: 2000,
+       queue_interval: 100
