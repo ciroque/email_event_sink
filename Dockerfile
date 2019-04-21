@@ -8,7 +8,7 @@ WORKDIR /opt/app
 
 RUN apk update && \
     apk upgrade --no-cache && \
-    apk add --no-cache build-base
+    apk add --no-cache build-base git
 
 RUN mix local.rebar --force && \
     mix local.hex --force
