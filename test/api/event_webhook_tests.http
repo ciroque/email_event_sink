@@ -1,0 +1,8 @@
+POST http://localhost:4000/api/email/events
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+[{"email": "user@example.com", "event": "delivered", "timestamp": 12309875}]
+
+###

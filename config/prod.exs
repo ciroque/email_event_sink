@@ -11,8 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :email_event_sink, EmailEventSinkWeb.Endpoint,
 #  http: [:inet6, port: System.get_env("PORT") || 4000],
-  http: [port: {:system, "EES_PORT"}, ip: {0, 0, 0, 0}],
-  url: [host: "example.com", port: 80]
+  http: [port: 4000, ip: {0, 0, 0, 0}]
 
 # Do not print debug messages in production
 config :logger, level: :info
