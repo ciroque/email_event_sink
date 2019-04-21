@@ -27,7 +27,7 @@ config :logger, :console,
 config :logger, :gelf_logger,
        host: "graylog.stag.ciroque-enterprises.net",
        port: 12201,
-       application: "EmailEVentSink",
+       application: "EmailEventSink",
        json_encoder: Jason,
        compression: :gzip, # Defaults to :gzip, also accepts :zlib or :raw
        metadata: [:request_id, :function, :module, :file, :line]
