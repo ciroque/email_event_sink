@@ -19,7 +19,7 @@ jobs:
 
       - run:
           name: Install required build tools
-          command: apk add --no-cache build-base
+          command: apk add --no-cache build-base git
 
       - run:
           name: Set up Hex locally
