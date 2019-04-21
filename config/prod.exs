@@ -10,8 +10,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :email_event_sink, EmailEventSinkWeb.Endpoint,
-#  http: [:inet6, port: System.get_env("PORT") || 4000],
-  http: [port: 4000, ip: {0, 0, 0, 0}]
+       on_init: {EmailEventSinkWeb.Endpoint, :load_from_system_env, []},
+       http: [port: {:system, "PORT"}, ip: {0, 0, 0, 0}],
+       server: true
 
 # Do not print debug messages in production
 config :logger, level: :info
