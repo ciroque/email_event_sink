@@ -15,7 +15,21 @@ config :email_event_sink, EmailEventSinkWeb.Endpoint,
        server: true
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger,
+  level: :info,
+  backends: [:console, {Logger.Backends.Gelf, :gelf_logger}],
+  utc_log: true
+
+config :logger, :console,
+       format: "$time $metadata[$level] $message\n",
+       metadata: [:request_id]
+
+config :logger, :gelf_logger,
+       host: "graylog.stag.ciroque-enterprises.net",
+       port: 12201,
+       application: "EmailEVentSink",
+       compression: :gzip, # Defaults to :gzip, also accepts :zlib or :raw
+       metadata: [:request_id, :function, :module, :file, :line]
 
 # ## SSL Support
 #
