@@ -9,7 +9,7 @@ defmodule EmailEventSinkWeb.EventSinkView do
     %{data: render_many(events, __MODULE__, "events.json")}
   end
 
-  def render("events.json", %{events: %Event{} = event}) do
+  def render("events.json", %{event_sink: %Event{} = event}) do
     event |> Map.drop([:__struct__, :__meta__, :updated_at, :inserted_at])
   end
 end
