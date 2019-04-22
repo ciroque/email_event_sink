@@ -9,7 +9,7 @@ defmodule EmailEventSinkWeb.Router do
     pipe_through :api
 
     scope "/email" do
-      resources, "/events", EventSinkController, only: [:create, :index]
+      resources "/events", EventSinkController, only: [:create, :index]
     end
   end
 end
