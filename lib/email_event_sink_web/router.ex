@@ -10,6 +10,7 @@ defmodule EmailEventSinkWeb.Router do
 
     scope "/email" do
       match :post, "/events", EventSinkController, :create
+      match :get, "/events", EventSinkController, :index
     end
   end
 end

@@ -49,8 +49,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :email_event_sink, EmailEventSink.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "email_event_sink_rw",
+  password: "happyhoundscattraining",
   database: "email_event_sink_dev",
   hostname: "localhost",
   pool_size: 10

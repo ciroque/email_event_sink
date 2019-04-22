@@ -11,8 +11,8 @@ config :logger, level: :warn
 
 # Configure your database
 config :email_event_sink, EmailEventSink.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "email_event_sink_rw",
+  password: "happyhoundscattraining",
   database: "email_event_sink_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
