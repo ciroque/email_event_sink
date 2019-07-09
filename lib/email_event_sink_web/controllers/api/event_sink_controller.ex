@@ -10,7 +10,7 @@ defmodule EmailEventSinkWeb.EventSinkController do
         fn %{"timestamp" => event_timestamp} = event ->
           attrs = event
             |> Map.put_new("event_timestamp", event_timestamp)
-            |> Map.put("categories", Map.get(m, "categories") |> List.foldl([], fn x, acc -> ["\"#{x}\"" | acc]  end) |> Enum.join(","))
+            |> Map.put("categories", Map.get(event, "categories") |> List.foldl([], fn x, acc -> ["\"#{x}\"" | acc]  end) |> Enum.join(","))
           Events.create(attrs)
         end)
     conn |> render("create.json", %{event: %{}})
