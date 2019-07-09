@@ -14,7 +14,7 @@ config :email_event_sink, EmailEventSink.Repo,
 #  username: "email_event_sink_rw",
 #  password: "happyhoundscattraining",
   username: "postgres",
-  password: "postgres",
+  password: "mysecretpassword",
   database: "email_event_sink_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
