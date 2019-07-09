@@ -21,7 +21,7 @@ config :logger,
   utc_log: true
 
 config :logger, :console,
-       format: "$time $metadata[$level] $message\n",
+       format: "$date $time $metadata[$level] $message\n",
        metadata: [:request_id]
 
 config :logger, :gelf_logger,
