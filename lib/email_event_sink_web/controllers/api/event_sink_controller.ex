@@ -27,7 +27,7 @@ defmodule EmailEventSinkWeb.EventSinkController do
   end
 
   defp fix_categories(nil), do: ""
-  defp fix_categories(categories) when is_array(categories) do
+  defp fix_categories(categories) when is_list(categories) do
     categories |> List.foldl([], fn x, acc -> ["\"#{x}\"" | acc]  end) |> Enum.join(",")
   end
   defp fix_categories(categories) do
